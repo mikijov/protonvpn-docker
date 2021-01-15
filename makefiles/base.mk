@@ -106,9 +106,9 @@ endif
 # This may not be latest tag!
 # We will strip prefix v!!
 ifeq ($(GITHUB_ACTIONS),true)
-	LATEST_SEMVER := $(subst v,,$(shell git tag --merged remotes/origin/master | sort -V | tail -1))
+	LATEST_SEMVER := $(subst v,,$(shell git tag --merged "remotes/origin/$${DEFAULT_BRANCH}" | sort -V | tail -1))
 else
-	LATEST_SEMVER := $(subst v,,$(shell git tag --merged master | sort -V | tail -1))
+	LATEST_SEMVER := $(subst v,,$(shell git tag --merged $${DEFAULT_BRANCH} | sort -V | tail -1))
 endif
 
 # Version Tag handler

@@ -51,7 +51,7 @@ $(call check_defined, DOCKER_BUILD_CONTEXT, Docker build context (default=.))
 # 	b. Commit is tagged, and latest tag is same as version (version bulding handles git tree state,
 #      so if tree is dirty, latest tag wont be added)
 ADD_LATEST_TAG := $(shell \
-if [[ "$(GIT_TAG_PRESENT)" != "true" ]] && [[ "$(GIT_BRANCH)" == master ]] \
+if [[ "$(GIT_TAG_PRESENT)" != "true" ]] && [[ "$(GIT_BRANCH)" == "$${DEFAULT_BRANCH}" ]] \
 	&& [[ "$(IMAGE_ALWAYS_TAG_LATEST)" == "true" ]] && [[ $(GIT_TREE_STATE) == "clean" ]]; then \
 	echo "true"; \
 elif [[ "$(GIT_TAG_PRESENT)" == "true" ]] && [[ "$(VERSION)" == "$(LATEST_SEMVER)" ]]; then \
